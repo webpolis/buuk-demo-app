@@ -1,17 +1,14 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, BaseEntity } from 'typeorm';
 import { Question } from './question.entity';
 import { Result } from './result.entity';
 
 @Entity()
-export class Test {
+export class Test extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({
-        type: 'int',
-        nullable: false,
-    })
-    created: number;
+    @Column({ type: 'integer' })
+    createdAt: number;
 
     @OneToMany(type => Result, result => result.test)
     results: Result[];
@@ -19,5 +16,6 @@ export class Test {
     @OneToMany(type => Question, question => question.test)
     questions: Question[];
 
-    title?: string;
+    @Column({ type: 'text' })
+    title: string;
 }

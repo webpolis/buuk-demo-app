@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { TestsService } from '../services/tests.service';
 import { Test } from '../models/test.entity';
+import CreateTestDto from '../dto/create-test.dto';
 
 @Controller('tests')
 export class TestsController {
@@ -22,7 +23,7 @@ export class TestsController {
   }
 
   @Post('create')
-  async create(@Body() testData: Test): Promise<any> {
+  async create(@Body() testData: CreateTestDto): Promise<any> {
     return this.testsService.create(testData);
   }
 

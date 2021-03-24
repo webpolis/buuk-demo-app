@@ -1,11 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, BaseEntity, ManyToOne } from 'typeorm';
 import { Question } from './question.entity';
 
 @Entity()
-export class Choice {
+export class Choice extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @ManyToOne(type => Question, question => question.choices)
     question: Question;
 
     content: string;

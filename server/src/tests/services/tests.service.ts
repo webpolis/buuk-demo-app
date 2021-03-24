@@ -2,26 +2,29 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Test } from '../models/test.entity';
-import { UpdateResult, DeleteResult } from  'typeorm';
+import { UpdateResult, DeleteResult } from 'typeorm';
+import CreateTestDto from '../dto/create-test.dto';
 
 @Injectable()
 export class TestsService {
 
-    /**
-     *
-     */
     constructor(@InjectRepository(Test)
     private testRepository: Repository<Test>) {
     }
-    /**
-     *
-     */
 
-    async  findAll(): Promise<Test[]> {
-        return await this.testRepository.find();
+    async findAll(): Promise<Test[]> {
+        return await this.testRepository.find({
+            relations: ['questions', 'results'],
+            loadEagerRelations: true,
+        });
     }
 
-    async  create(test: Test): Promise<Test> {
+    async create(testDto: CreateTestDto): Promise<Test> {
+        const { title } = testDto;
+        const test: Test = Test.create();
+        test.createdAt = Date.now();
+        test.title = title;
+
         return await this.testRepository.save(test);
     }
 

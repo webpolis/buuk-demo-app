@@ -1,19 +1,16 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-import { Choice } from './choice.entity';
+import { Entity, Column, PrimaryGeneratedColumn, BaseEntity, ManyToOne } from 'typeorm';
 import { Test } from './test.entity';
 
 @Entity()
-export class Result {
+export class Result extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({
-        type: 'int',
-        nullable: false,
-    })
-    created: number;
+    @Column({ type: 'integer' })
+    createdAt: number;
 
+    @ManyToOne(type => Test, test => test.results)
     test: Test;
 
-    selection: Choice[];
+    choices: number[];
 }
