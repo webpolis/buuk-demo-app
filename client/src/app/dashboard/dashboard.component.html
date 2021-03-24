@@ -11,6 +11,10 @@
                 <td>{{test.title}}</td>
                 <td>
                     <div class="block" *ngFor="let result of test.results">
+                        <span class="tag is-info">
+                            {{ result.startTime | date:'medium' }}
+                        </span>
+                        &nbsp;
                         <span *ngIf="(result.endTime - result.startTime) > 0" class="tag is-dark">
                             {{ ((result.endTime -
                             result.startTime) / 1000 / 60) |
