@@ -7,14 +7,10 @@ export class Question {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({
-        type: 'int',
-        nullable: false,
-    })
-    created: number;
-
     test: Test;
 
     @OneToMany(type => Choice, choice => choice.question)
     choices: Choice[];
+
+    content: string;
 }

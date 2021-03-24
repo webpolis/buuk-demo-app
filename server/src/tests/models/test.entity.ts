@@ -18,4 +18,6 @@ export class Test {
 
     @OneToMany(type => Question, question => question.test)
     questions: Question[];
+
+    title?: string;
 }

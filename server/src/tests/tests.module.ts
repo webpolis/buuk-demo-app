@@ -9,7 +9,7 @@ import { Choice } from './models/choice.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Test, Question, Result, Choice]),
+    TypeOrmModule.forFeature([Test, Question, Choice, Result]),
   ],
   providers: [TestsService],
   controllers: [TestsController],
