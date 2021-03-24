@@ -15,3 +15,7 @@ Demo app for Buuk. Developed by [Nicolas Iglesias](mailto:nfiglesias@gmail.com)
 `cd client && npm i`
 
 `ng serve`
+
+## Run
+
+Go to [http://localhost:4200/](http://localhost:4200/)
