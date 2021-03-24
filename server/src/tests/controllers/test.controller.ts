@@ -30,6 +30,46 @@ export class TestsController {
     return this.testsService.findAll();
   }
 
+  @Get('summary')
+  async summary(): Promise<any> {
+    const stats = {
+      // tests qty
+      testCount: 0,
+      // duration overall (in minutes)
+      totalDuration: 0,
+      // average duration (in minutes)
+      durationAvg: 0,
+      // total tests started
+      started: 0,
+    };
+    const tests = await this.testsService.findAll();
+    stats.testCount = tests.length;
+
+    // ideally, we'll have a different module where we do all this stats thing, but i'm short on time
+    tests.forEach(test => {
+      if (test.results.length > 0) {
+        stats.started += 1;
+
+        test.results.forEach(result => {
+          if (result.endTime) {
+            stats.totalDuration += Math.floor((result.endTime - result.startTime) / 1000 / 60);
+          }
+        });
+      }
+    });
+
+    stats.durationAvg = stats.totalDuration / stats.started;
+
+    return Promise.resolve(stats);
+  }
+
+  @Get(':id/view')
+  async view(@Param('id') testId): Promise<Test> {
+    const test = await this.testsService.findOne(testId);
+
+    return test;
+  }
+
   @Get(':id/begin')
   async begin(@Param('id') testId): Promise<Result> {
     const test = await this.testsService.findOne(testId);
