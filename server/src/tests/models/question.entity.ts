@@ -13,5 +13,6 @@ export class Question extends BaseEntity {
     @OneToMany(type => Choice, choice => choice.question, { eager: true })
     choices: Choice[];
 
+    @Column({ type: 'varchar' })
     content: string;
 }

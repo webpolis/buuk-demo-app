@@ -16,6 +16,6 @@ export class Test extends BaseEntity {
     @OneToMany(type => Question, question => question.test, { eager: true })
     questions: Question[];
 
-    @Column({ type: 'text' })
+    @Column({ type: 'varchar' })
     title: string;
 }

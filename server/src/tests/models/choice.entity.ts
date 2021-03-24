@@ -9,5 +9,6 @@ export class Choice extends BaseEntity {
     @ManyToOne(type => Question, question => question.choices)
     question: Question;
 
+    @Column({ type: 'varchar' })
     content: string;
 }
