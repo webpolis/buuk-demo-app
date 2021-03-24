@@ -1,6 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { Choice } from './choice.entity';
-import { Question } from './question.entity';
 import { Test } from './test.entity';
 
 @Entity()
