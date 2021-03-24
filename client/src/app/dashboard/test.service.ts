@@ -11,13 +11,6 @@ export class TestService {
   constructor(private http: HttpClient) { }
 
   list() {
-    return this.http.get(`${environment.api}/tests`).subscribe(
-      (response: any) => {
-        return response;
-      },
-      (error: any) => {
-
-      }
-    );;
+    return this.http.get(`${environment.api}/tests`);
   }
 }

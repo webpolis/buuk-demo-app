@@ -1,1 +1,27 @@
-<p>dashboard works!</p>
+<div class="box">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Results</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let test of tests">
+                <td>{{test.title}}</td>
+                <td>
+                    <div class="block" *ngFor="let result of test.results">
+                        <span *ngIf="(result.endTime - result.startTime) > 0" class="tag is-dark">
+                            {{ ((result.endTime -
+                            result.startTime) / 1000 / 60) |
+                            number:'1.0-2' }} minute(s)
+                        </span>
+                        <span *ngIf="(result.endTime - result.startTime) <= 0" class="tag is-warning">
+                            Unfinished
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
