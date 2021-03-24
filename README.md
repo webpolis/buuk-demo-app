@@ -18,4 +18,4 @@ Demo app for Buuk. Developed by [Nicolas Iglesias](mailto:nfiglesias@gmail.com)
 
 ## Run
 
-Go to [http://localhost:4200/](http://localhost:4200/)
+Go to [http://localhost:4200/dashboard](http://localhost:4200/dashboard)
