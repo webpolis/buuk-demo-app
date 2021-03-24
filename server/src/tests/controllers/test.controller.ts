@@ -41,6 +41,8 @@ export class TestsController {
       durationAvg: 0,
       // total tests started
       started: 0,
+      // total tests finished
+      finished: 0,
     };
     const tests = await this.testsService.findAll();
     stats.testCount = tests.length;
@@ -48,17 +50,23 @@ export class TestsController {
     // ideally, we'll have a different module where we do all this stats thing, but i'm short on time
     tests.forEach(test => {
       if (test.results.length > 0) {
+        let finished = false;
         stats.started += 1;
 
         test.results.forEach(result => {
           if (result.endTime) {
+            finished = true;
             stats.totalDuration += Math.floor((result.endTime - result.startTime) / 1000 / 60);
           }
         });
+
+        if (finished) {
+          stats.finished += 1;
+        }
       }
     });
 
-    stats.durationAvg = stats.totalDuration / stats.started;
+    stats.durationAvg = stats.totalDuration / stats.finished;
 
     return Promise.resolve(stats);
   }
