@@ -11,7 +11,7 @@ export class Result extends BaseEntity {
     startTime: number;
 
     @Column({ type: 'integer', nullable: true })
-    endTime: number;
+    endTime?: number;
 
     @ManyToOne(type => Test, test => test.results)
     test: Test;
@@ -22,5 +22,5 @@ export class Result extends BaseEntity {
         joinColumn: { name: 'result_id', referencedColumnName: 'id' },
         inverseJoinColumn: { name: 'choice_id', referencedColumnName: 'id' },
     })
-    choices: Choice[];
+    choices?: Choice[];
 }

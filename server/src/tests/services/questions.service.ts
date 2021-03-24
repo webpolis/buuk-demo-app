@@ -50,4 +50,8 @@ export class QuestionsService {
     async delete(id): Promise<DeleteResult> {
         return await this.questionRepository.delete(id);
     }
+
+    async getChoices(ids: number[]): Promise<Choice[]> {
+        return await this.choiceRepository.findByIds(ids);
+    }
 }

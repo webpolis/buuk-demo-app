@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult } from 'typeorm';
 import { Result } from '../models/result.entity';
 import { Test } from '../models/test.entity';
 import { Choice } from '../models/choice.entity';
@@ -21,6 +21,10 @@ export class ResultsService {
 
     async findAll(): Promise<Result[]> {
         return await this.resultRepository.find();
+    }
+
+    async findOne(id: number): Promise<Result> {
+        return await this.resultRepository.findOne(id);
     }
 
     async create(resultDto: CreateResultDto): Promise<Result> {
