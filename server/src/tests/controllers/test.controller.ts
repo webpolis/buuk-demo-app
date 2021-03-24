@@ -38,5 +38,4 @@ export class TestsController {
   async delete(@Param('id') id): Promise<any> {
     return this.testsService.delete(id);
   }
-
 }
