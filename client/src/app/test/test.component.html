@@ -2,5 +2,14 @@
     Create test form here
 </div>
 <div class="box" *ngIf="test">
-    viw
+    <div class="content" *ngFor="let question of test.questions">
+        <h2>
+            {{ question.content }}
+        </h2>
+        <ul>
+            <li *ngFor="let choice of question.choices">
+                {{ choice.content }}
+            </li>
+        </ul>
+    </div>
 </div>
