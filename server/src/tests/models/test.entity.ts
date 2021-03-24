@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Question } from './question.entity';
+import { Result } from './result.entity';
 
 @Entity()
 export class Test {
@@ -6,8 +8,14 @@ export class Test {
     id: number;
 
     @Column({
-        type: 'date',
+        type: 'int',
         nullable: false,
     })
-    created: Date;
+    created: number;
+
+    @OneToMany(type => Result, result => result.test)
+    results: Result[];
+
+    @OneToMany(type => Question, question => question.test)
+    questions: Question[];
 }
