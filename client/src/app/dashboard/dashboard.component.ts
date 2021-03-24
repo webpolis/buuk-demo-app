@@ -7,10 +7,11 @@ import { TestService } from './test.service';
   styleUrls: ['./dashboard.component.sass']
 })
 export class DashboardComponent implements OnInit {
+  tests;
 
-  constructor(testService: TestService) { }
+  constructor(private testService: TestService) { }
 
   ngOnInit() {
+    this.tests = this.testService.list();
   }
-
 }
