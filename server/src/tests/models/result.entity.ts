@@ -16,16 +16,5 @@ export class Result {
 
     test: Test;
 
-    selection: QuestionChoice[];
-}
-
-// tslint:disable-next-line: max-classes-per-file
-@Entity()
-export class QuestionChoice {
-    @PrimaryGeneratedColumn()
-    id: number;
-
-    question: Question;
-
-    choice: Choice;
+    selection: Choice[];
 }
