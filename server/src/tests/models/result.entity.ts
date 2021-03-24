@@ -16,7 +16,7 @@ export class Result extends BaseEntity {
     @ManyToOne(type => Test, test => test.results)
     test: Test;
 
-    @ManyToMany(type => Choice, { cascade: true })
+    @ManyToMany(type => Choice, { cascade: true, eager: true })
     @JoinTable({
         name: 'result_choice',
         joinColumn: { name: 'result_id', referencedColumnName: 'id' },
