@@ -16,4 +16,8 @@ export class TestService {
   summary() {
     return this.http.get(`${environment.api}/tests/summary`);
   }
+
+  view(id) {
+    return this.http.get(`${environment.api}/tests/${id}/view`);
+  }
 }
