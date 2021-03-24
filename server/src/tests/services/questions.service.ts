@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { Question } from '../models/question.entity';
 import { UpdateResult, DeleteResult } from 'typeorm';
 import CreateQuestionDto from '../dto/create-question.dto';
+import { Test } from '../models/test.entity';
 
 @Injectable()
 export class QuestionsService {
@@ -19,9 +20,10 @@ export class QuestionsService {
     }
 
     async create(questionDto: CreateQuestionDto): Promise<Question> {
-        const { content } = questionDto;
+        const { content, test: testId } = questionDto;
         const question = Question.create();
         question.content = content;
+        question.test = await Test.findOne(testId);
 
         return await this.questionRepository.save(question);
     }
