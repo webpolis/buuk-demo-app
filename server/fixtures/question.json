@@ -1,4 +1,9 @@
 {
     "content": "What is this?",
-    "test": 1
+    "test": 1,
+    "choices": [
+        "A",
+        "B",
+        "C"
+    ]
 }

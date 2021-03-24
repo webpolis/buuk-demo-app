@@ -1,5 +1,5 @@
 export default class CreateQuestionDto {
     readonly content: string;
-    readonly choices: number[];
+    readonly choices: string[];
     readonly test: number;
 }

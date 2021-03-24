@@ -15,4 +15,7 @@ export class Question extends BaseEntity {
 
     @Column({ type: 'varchar' })
     content: string;
+
+    @Column({ type: 'integer', default: 0 })
+    multiple: number;
 }
