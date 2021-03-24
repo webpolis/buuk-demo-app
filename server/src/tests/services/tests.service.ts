@@ -16,6 +16,10 @@ export class TestsService {
         return await this.testRepository.find();
     }
 
+    async findOne(id: number): Promise<Test> {
+        return await this.testRepository.findOne(id);
+    }
+
     async create(testDto: CreateTestDto): Promise<Test> {
         const { title } = testDto;
         const test: Test = Test.create();

@@ -7,8 +7,11 @@ export class Result extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ type: 'integer' })
-    createdAt: number;
+    @Column({ type: 'integer', nullable: true })
+    startTime: number;
+
+    @Column({ type: 'integer', nullable: true })
+    endTime: number;
 
     @ManyToOne(type => Test, test => test.results)
     test: Test;
