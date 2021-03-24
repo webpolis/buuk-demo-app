@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TestService } from './test.service';
 
 @Component({
@@ -6,7 +6,9 @@ import { TestService } from './test.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.sass']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
+  private subList;
+  private subSummary;
   tests;
   summary;
 
@@ -18,10 +20,15 @@ export class DashboardComponent implements OnInit {
   }
 
   getTests() {
-    this.testService.list().subscribe(tests => this.tests = tests);
+    this.subList = this.testService.list().subscribe(tests => this.tests = tests);
   }
 
   getSummary() {
-    this.testService.summary().subscribe(summary => this.summary = summary);
+    this.subSummary = this.testService.summary().subscribe(summary => this.summary = summary);
+  }
+
+  ngOnDestroy() {
+    this.subList.unsubscribe();
+    this.subSummary.unsubscribe();
   }
 }
