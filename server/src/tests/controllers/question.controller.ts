@@ -37,5 +37,4 @@ import { Question } from '../models/question.entity';
     async delete(@Param('id') id): Promise<any> {
       return this.questionsService.delete(id);
     }
-
   }

@@ -10,7 +10,7 @@ export class Question extends BaseEntity {
     @ManyToOne(type => Test, test => test.questions)
     test: Test;
 
-    @OneToMany(type => Choice, choice => choice.question)
+    @OneToMany(type => Choice, choice => choice.question, { eager: true })
     choices: Choice[];
 
     content: string;

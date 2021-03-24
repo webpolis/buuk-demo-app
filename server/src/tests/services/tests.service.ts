@@ -13,10 +13,7 @@ export class TestsService {
     }
 
     async findAll(): Promise<Test[]> {
-        return await this.testRepository.find({
-            relations: ['questions', 'results'],
-            loadEagerRelations: true,
-        });
+        return await this.testRepository.find();
     }
 
     async create(testDto: CreateTestDto): Promise<Test> {

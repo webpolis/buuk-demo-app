@@ -10,10 +10,10 @@ export class Test extends BaseEntity {
     @Column({ type: 'integer' })
     createdAt: number;
 
-    @OneToMany(type => Result, result => result.test)
+    @OneToMany(type => Result, result => result.test, { eager: true })
     results: Result[];
 
-    @OneToMany(type => Question, question => question.test)
+    @OneToMany(type => Question, question => question.test, { eager: true })
     questions: Question[];
 
     @Column({ type: 'text' })
